@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms of Service - Astrocade</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #040307;
+      --glass-bg: rgba(18, 15, 28, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --text: #f8f8fa;
+      --muted: #b0afbe;
+      --brand: #9d4edd;
+      --brand-2: #00f0ff;
+      --radius: 20px;
+      --glass-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+      --blur-strength: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 15%, rgba(0, 240, 255, 0.12), transparent 45%), var(--bg);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: "Outfit", system-ui, sans-serif;
+      line-height: 1.7;
+    }
+    
+    a { color: inherit; text-decoration: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(var(--blur-strength));
+      -webkit-backdrop-filter: blur(var(--blur-strength));
+      background: rgba(12, 10, 18, 0.75);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    
+    .nav { max-width: 1200px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-mark { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); }
+    .brand-name { font-family: "Orbitron", sans-serif; font-weight: 800; background: linear-gradient(135deg, #fff, var(--brand-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .menu { display: flex; gap: 8px; }
+    .menu a { padding: 8px 16px; border-radius: 999px; color: var(--muted); font-weight: 500; }
+    .menu a:hover { color: var(--text); background: rgba(255, 255, 255, 0.08); }
+
+    .section { max-width: 800px; margin: 48px auto; padding: 0 20px; }
+    .section h2 { font-family: "Orbitron", sans-serif; font-weight: 800; font-size: 2.2rem; margin: 0 0 6px; }
+    .kicker { color: var(--brand-2); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-size: .8rem; }
+
+    .glass-box {
+      backdrop-filter: blur(var(--blur-strength));
+      -webkit-backdrop-filter: blur(var(--blur-strength));
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: var(--glass-shadow);
+      padding: 40px;
+      margin-top: 24px;
+    }
+
+    .glass-box h3 { font-family: "Orbitron", sans-serif; color: #fff; font-size: 1.25rem; margin-top: 28px; margin-bottom: 12px; }
+    .glass-box h3:first-of-type { margin-top: 0; }
+    .glass-box p, .glass-box li { color: var(--muted); font-size: 0.98rem; }
+
+    footer { border-top: 1px solid var(--glass-border); margin-top: 60px; background: rgba(6, 4, 10, 0.4); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 32px 20px; display: flex; justify-content: space-between; align-items: center; color: var(--muted); }
+    .links a { margin-right: 18px; }
+    .links a:hover { color: var(--brand-2); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-name">Astrocade</div>
+      </div>
+       <nav class="menu" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="Activities.html">Activities</a>
+        <a href="UpcomingEvents.html" >Upcoming Events</a>
+        <a href="Location.html">Location</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="section">
+    <div class="kicker">Operational Directives</div>
+    <h2>Terms & Conditions</h2>
+    
+    <div class="glass-box">
+      <h3>1. Area Access Protocols</h3>
+      <p>By agreeing to enter Astrocade you agree to respect</p>
+
+      <h3>2. Ticket Formations & Redemptions</h3>
+      <p>Prizes secured through physical arcade ticket structures or tournament vouchers must be redeemed during current local season periods. Tokens hold zero independent financial value exterior to our prize vault inventory arrays. You may choose to hold on to your tickets to spend at a later time.</p>
+
+      <h3>3. Liability Adjustments</h3>
+      <p>Astrocade is not liable for any damage to your belongings, lost items, or equipment configuration errors/hardware failures within your care. You are respo</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html" style="color:var(--brand-2)">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

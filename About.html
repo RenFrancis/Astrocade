@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Astrocade</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #040307;
+      --glass-bg: rgba(18, 15, 28, 0.55);
+      --glass-bg-elevated: rgba(30, 26, 48, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-border-glow: rgba(25, 227, 255, 0.3);
+      --text: #f8f8fa;
+      --muted: #b0afbe;
+      --brand: #9d4edd;
+      --brand-2: #00f0ff;
+      --radius: 20px;
+      --glass-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.25), inset 0 10px 20px rgba(255, 255, 255, 0.05);
+      --blur-strength: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 15%, rgba(0, 240, 255, 0.12), transparent 45%), radial-gradient(circle at 85% 65%, rgba(157, 78, 221, 0.15), transparent 50%), radial-gradient(circle at 50% -10%, rgba(30, 20, 60, 0.6), transparent 60%), var(--bg);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: "Outfit", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a { color: inherit; text-decoration: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(var(--blur-strength)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur-strength)) saturate(160%);
+      background: linear-gradient(180deg, rgba(12, 10, 18, 0.75) 0%, rgba(8, 6, 12, 0.6) 100%);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .nav { max-width: 1200px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-mark { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); position: relative; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
+    .brand-mark::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%); border-radius: 11px; }
+    .brand-name { font-family: "Orbitron", sans-serif; font-weight: 800; letter-spacing: 1px; background: linear-gradient(135deg, #fff 30%, var(--brand-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .menu { display: flex; gap: 8px; align-items: center; }
+    .menu a { padding: 8px 16px; border-radius: 999px; color: var(--muted); font-weight: 500; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .menu a:hover, .menu a[aria-current="page"] { color: var(--text); background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(5px); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 15px rgba(0, 0, 0, 0.2); outline: 1px solid rgba(255, 255, 255, 0.15); }
+
+    .section { max-width: 1200px; margin: 48px auto; padding: 0 20px; }
+    .section h2 { font-family: "Orbitron", sans-serif; font-weight: 800; font-size: clamp(24px, 4vw, 34px); letter-spacing: .5px; margin: 0 0 6px; }
+    
+    .kicker { color: var(--brand-2); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-size: .8rem; text-shadow: 0 0 10px rgba(0, 240, 255, 0.4); }
+    
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-top: 24px; }
+    .col-7 { grid-column: span 7; }
+    .col-5 { grid-column: span 5; }
+    .col-4 { grid-column: span 4; }
+    @media (max-width: 900px) { .col-7, .col-5, .col-4 { grid-column: span 12; } }
+
+    .glass-box {
+      backdrop-filter: blur(var(--blur-strength)) saturate(140%);
+      -webkit-backdrop-filter: blur(var(--blur-strength)) saturate(140%);
+      background: linear-gradient(135deg, var(--glass-bg) 0%, rgba(10, 8, 16, 0.4) 100%);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: var(--glass-shadow);
+      padding: 32px;
+      position: relative;
+    }
+    
+    .stat-card { text-align: center; padding: 24px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); }
+    .stat-number { font-family: "Orbitron", sans-serif; font-size: 2rem; font-weight: 800; color: var(--brand-2); margin-bottom: 4px; }
+    .stat-label { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    footer { border-top: 1px solid var(--glass-border); margin-top: 60px; background: rgba(6, 4, 10, 0.4); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 32px 20px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; color: var(--muted); }
+    .links a { margin-right: 18px; color: var(--muted); transition: color 0.2s; }
+    .links a:hover { color: var(--brand-2); }
+    .social { display: flex; gap: 16px; font-size: 1.2rem; }
+    .social a { color: var(--muted); transition: all 0.2s; }
+    .social a:hover { color: #fff; transform: scale(1.1); }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to content</a>
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="nav" role="navigation" aria-label="Main">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-name">Astrocade</div>
+      </div>
+      
+      <nav class="menu" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="Activities.html">Activities</a>
+        <a href="UpcomingEvents.html" >Upcoming Events</a>
+        <a href="Location.html">Location</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="section">
+    <div class="kicker">Our Core Mission</div>
+    <h2>About Astrocade</h2>
+    <p class="muted" style="margin-top:-2px; margin-bottom:28px">Building the ultimate physical nexus for fostering a welcoming community culture and Japanese arcade engagement.</p>
+
+    <div class="grid">
+      <!-- Main Content Block -->
+      <div class="glass-box col-7">
+        <h3 style="margin-top:0; font-family:'Orbitron', sans-serif; color:#fff;">The Nexus of Gaming Culture</h3>
+        <p>Founded by a small family who met each other in the small town of Mitsuke, Japan. Astrocade is designed to address a critical missing component in contemporary U.K gaming: to establish a cultural family entertainment centre and arcade that demonstrates the player's driven community at it's core.</p>
+        <p>We reject the standard, uninspired brick-and-mortar storefront layout. Instead, our facility balances deep atmospheric aesthetics with utility. From bright and entertaining arcade asthetics of Japanese arcade culture to  responsive audio arrays, every square foot is optimised to celebrate raw hobby expertise. We take pride in listening to our audience and as such are openingly accepting of the communities public ideas for gaming.</p>
+        <p style="margin-bottom:0;">Whether you are chasing regional tournament success or simply looking to chill  with your local squad or loved ones, Astrocade provides the environment you deserve.</p>
+      </div>
+
+      <!-- Side Stats Panel -->
+      <div class="glass-box col-5" style="display: flex; flex-direction: column; gap: 16px; justify-content: center;">
+        <div class="stat-card">
+          <div class="stat-number">35+</div>
+          <div class="stat-label">Family entertainment choices</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2500 ft</div>
+          <div class="stat-label">Venue Capacity</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">Infinite</div>
+          <div class="stat-label">Amount of fond memories</div>
+        </div>
+      </div>
+
+      <!-- Core Values -->
+      <div class="glass-box col-4 stat-card">
+        <i class="fa-solid fa-shield-halved" style="font-size:1.8rem; color:var(--brand-2); margin-bottom:12px;"></i>
+        <h4 style="margin:0 0 6px 0; font-family:'Orbitron';">Sanctioned Fairness</h4>
+        <p style="margin:0; font-size:0.9rem; color:var(--muted)">All tournament events follow structured rulesets backed by certified regional judges and trained professionals.</p>
+      </div>
+      <div class="glass-box col-4 stat-card">
+        <i class="fa-solid fa-wand-magic-sparkles" style="font-size:1.8rem; color:var(--brand); margin-bottom:12px;"></i>
+        <h4 style="margin:0 0 6px 0; font-family:'Orbitron';">Atmospheric Design</h4>
+        <p style="margin:0; font-size:0.9rem; color:var(--muted)">Astrocade captures the heart of Japan, community and entertainment with our selective choice of neon themed machines.</p>
+      </div>
+      <div class="glass-box col-4 stat-card">
+        <i class="fa-solid fa-microchip" style="font-size:1.8rem; color:var(--brand-2); margin-bottom:12px;"></i>
+        <h4 style="margin:0 0 6px 0; font-family:'Orbitron';">Ambition to stand by the players</h4>
+        <p style="margin:0; font-size:0.9rem; color:var(--muted)">We put you the player first. We are not just a space for gaming, we are a community who cares.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="links">
+        <a href="about.html" style="color:var(--brand-2)">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+      <div class="social">
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

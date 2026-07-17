@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Location & Hours - Astrocade</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #040307;
+      --glass-bg: rgba(18, 15, 28, 0.55);
+      --glass-bg-elevated: rgba(30, 26, 48, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-border-glow: rgba(25, 227, 255, 0.3);
+      --text: #f8f8fa;
+      --muted: #b0afbe;
+      --brand: #9d4edd;
+      --brand-2: #00f0ff;
+      --radius: 20px;
+      --glass-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.25), inset 0 10px 20px rgba(255, 255, 255, 0.05);
+      --blur-strength: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 15%, rgba(0, 240, 255, 0.12), transparent 45%), radial-gradient(circle at 85% 65%, rgba(157, 78, 221, 0.15), transparent 50%), radial-gradient(circle at 50% -10%, rgba(30, 20, 60, 0.6), transparent 60%), var(--bg);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: "Outfit", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a { color: inherit; text-decoration: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(var(--blur-strength)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur-strength)) saturate(160%);
+      background: linear-gradient(180deg, rgba(12, 10, 18, 0.75) 0%, rgba(8, 6, 12, 0.6) 100%);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .nav { max-width: 1200px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-mark { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); position: relative; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
+    .brand-mark::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%); border-radius: 11px; }
+    .brand-name { font-family: "Orbitron", sans-serif; font-weight: 800; letter-spacing: 1px; background: linear-gradient(135deg, #fff 30%, var(--brand-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .menu { display: flex; gap: 8px; align-items: center; }
+    .menu a { padding: 8px 16px; border-radius: 999px; color: var(--muted); font-weight: 500; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .menu a:hover, .menu a[aria-current="page"] { color: var(--text); background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(5px); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 15px rgba(0, 0, 0, 0.2); outline: 1px solid rgba(255, 255, 255, 0.15); }
+    .menu a[aria-current="page"] { outline: 1px solid rgba(0, 240, 255, 0.3); background: linear-gradient(180deg, rgba(0, 240, 255, 0.15), rgba(0, 240, 255, 0.02)); }
+    
+    .menu-toggle { display: none; }
+
+    @media (max-width: 840px) {
+      .menu { display: none; }
+      .menu-toggle { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border); color: #fff; cursor: pointer; }
+      .drawer { position: fixed; inset: 0 0 0 30%; backdrop-filter: blur(var(--blur-strength)) saturate(150%); background: rgba(14, 11, 22, 0.85); border-left: 1px solid var(--glass-border); box-shadow: -10px 0 40px rgba(0,0,0,0.6); transform: translateX(100%); transition: transform .35s cubic-bezier(0.4, 0, 0.2, 1); padding: 24px; z-index: 100; }
+      .drawer.open { transform: translateX(0); }
+      .drawer a { display: block; padding: 14px 16px; border-radius: 12px; color: var(--muted); margin-bottom: 8px; }
+      .drawer a:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+    }
+
+    .section { max-width: 1200px; margin: 48px auto; padding: 0 20px; }
+    .section h2 { font-family: "Orbitron", sans-serif; font-weight: 800; font-size: clamp(24px, 4vw, 34px); letter-spacing: .5px; margin: 0 0 6px; }
+    
+    .kicker { color: var(--brand-2); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-size: .8rem; text-shadow: 0 0 10px rgba(0, 240, 255, 0.4); }
+    
+    .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 24px; }
+    @media (max-width: 980px) { .split-layout { grid-template-columns: 1fr; } }
+
+    .glass-box {
+      backdrop-filter: blur(var(--blur-strength)) saturate(140%);
+      -webkit-backdrop-filter: blur(var(--blur-strength)) saturate(140%);
+      background: linear-gradient(135deg, var(--glass-bg) 0%, rgba(10, 8, 16, 0.4) 100%);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: var(--glass-shadow);
+      padding: 32px;
+      position: relative;
+    }
+    .glass-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 45%; background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%); pointer-events: none; }
+
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    .hours-table td { padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .hours-table tr:last-child td { border-bottom: none; }
+    .hours-table td.day { font-weight: 600; color: #fff; }
+    .hours-table td.time { text-align: right; color: var(--muted); }
+
+    .map-container { width: 100%; height: 320px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; background: rgba(0,0,0,0.3); position: relative; }
+    .map-placeholder { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; color: var(--muted); text-align: center; padding: 20px; }
+    .map-placeholder i { font-size: 2.5rem; color: var(--brand-2); margin-bottom: 12px; }
+
+    .info-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .info-item i { font-size: 1.2rem; color: var(--brand-2); margin-top: 4px; }
+    .info-item h4 { margin: 0 0 4px 0; font-family: "Orbitron", sans-serif; font-size: 1rem; color: #fff; }
+    .info-item p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    footer { border-top: 1px solid var(--glass-border); margin-top: 60px; background: rgba(6, 4, 10, 0.4); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 32px 20px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; color: var(--muted); }
+    .links a { margin-right: 18px; color: var(--muted); transition: color 0.2s; }
+    .links a:hover { color: var(--brand-2); }
+    .social { display: flex; gap: 16px; font-size: 1.2rem; }
+    .social a { color: var(--muted); transition: all 0.2s; }
+    .social a:hover { color: #fff; transform: scale(1.1); }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to content</a>
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="nav" role="navigation" aria-label="Main">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-name">Astrocade</div>
+      </div>
+     <nav class="menu" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="Activities.html">Activities</a>
+        <a href="UpcomingEvents.html" >Upcoming Events</a>
+        <a href="Location.html"aria-current="page">Location</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-controls="mobileDrawer" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i> Menu
+      </button>
+    </div>
+  
+  </header>
+
+  <main id="content" class="section">
+    <div class="kicker">Visit the community</div>
+    <h2>Location & Operating Hours</h2>
+    <p class="muted" style="margin-top:-2px; margin-bottom:28px">Find your way to our high-spec facility layout or check out our opening intervals.</p>
+
+    <div class="split-layout">
+      <!-- Panel 1: Contact Details & Map -->
+      <div class="glass-box">
+        <div class="info-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h4>Astrocade - Family Entertainment Centre & Arcade</h4>
+            <p>15-19, The Mall Newlands Shopping Centre, Gold St, Kettering NN16 8JL</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <h4>Call us</h4>
+            <p>+44 999 9999</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="fa-solid fa-square-parking"></i>
+          <div>
+            <h4>Transit & Parking</h4>
+            <p>Pay on display parking available at the Newlands Shopping Centre, alternatively bus route that stops directly in front of the shopping centre is available. If you are coming by train, stop at Corby and we are a short 2 minute drive away or 10 minute walk from the main station.</p>
+          </div>
+        </div>
+
+        <!-- Embedded Interactive Map Shell -->
+        <div class="map-container">
+          <!-- Replace this placeholder div with an actual <iframe> map source when deploying live coordinates -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2434.3316763955822!2d-0.7297641221928026!3d52.40066477203021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48779f01eb9830dd%3A0x698a7a52febac7e2!2sNewlands%20Shopping%20Centre!5e0!3m2!1sen!2suk!4v1783271668511!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+
+      <!-- Panel 2: Operational Times -->
+      <div class="glass-box">
+        <h3 style="margin-top:0; font-family: 'Orbitron', sans-serif; font-size: 1.4rem;">Time Modules</h3>
+        <p class="muted" style="font-size: 0.95rem;">Note: Arena entry allocations close exactly 45 minutes prior to facility lockdown.</p>
+        
+        <table class="hours-table">
+          <tr>
+            <td class="day">Monday</td>
+            <td class="time">8:00 AM - 6:00 PM</td>
+          </tr>
+          <tr>
+            <td class="day">Tuesday</td>
+            <td class="time">8:00 AM - 6:00 PM</td>
+          </tr>
+          <tr>
+            <td class="day">Wednesday</td>
+            <td class="time">8:00 AM - 6:00 PM</td>
+          </tr>
+          <tr>
+            <td class="day">Thursday</td>
+            <td class="time">8:00 AM - 6:00 PM</td>
+          </tr>
+          <tr>
+            <td class="day">Friday</td>
+            <td class="time">8:00 PM - 6:00 PM</td>
+          </tr>
+          <tr>
+            <td class="day">Saturday</td>
+            <td class="time">8:00 AM - 6:00 PM</td>
+          </tr>
+          <tr>
+            <td class="day">Sunday</td>
+            <td class="time">10:00 AM - 4:00 PM</td>
+          </tr>
+        </table>
+
+        <div style="margin-top: 32px; padding: 20px; border-radius: 12px; background: rgba(157, 78, 221, 0.1); border: 1px solid rgba(157, 78, 221, 0.25);">
+          <h4 style="margin: 0 0 6px 0; font-family: 'Orbitron', sans-serif; color: var(--brand-2);"><i class="fa-solid fa-circle-exclamation"></i> Holiday Rotations & Geek Retreat</h4>
+          <p style="margin: 0; font-size: 0.9rem; color: var(--muted);">Astrocade is open during the holiday season with the exception to national bank holiday, Christmas Eve, Christmas Day and Boxing Day.   Please be aware that our opening times do not reflect those of Geek Retreat and vice versa.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+      <div class="social">
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const drawer = document.getElementById('mobileDrawer');
+    const closeBtn = document.getElementById('drawerClose');
+    
+    function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); }
+    function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); }
+    
+    toggle?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    drawer?.addEventListener('click', (e)=>{ if(e.target === drawer) closeDrawer(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer(); });
+  </script>
+</body>
+</html>
