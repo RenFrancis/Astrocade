@@ -70,10 +70,13 @@
     @media (max-width: 840px) {
       .menu { display: none; }
       .menu-toggle { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border); color: #fff; cursor: pointer; }
-      .drawer { position: fixed; inset: 0 0 0 30%; backdrop-filter: blur(var(--blur-strength)) saturate(150%); background: rgba(14, 11, 22, 0.85); border-left: 1px solid var(--glass-border); box-shadow: -10px 0 40px rgba(0,0,0,0.6); transform: translateX(100%); transition: transform .35s cubic-bezier(0.4, 0, 0.2, 1); padding: 24px; z-index: 100; }
+      .drawer { position: fixed; inset: 0 0 0 30%; backdrop-filter: blur(var(--blur-strength)) saturate(150%); background: rgba(14, 11, 22, 0.95); border-left: 1px solid var(--glass-border); box-shadow: -10px 0 40px rgba(0,0,0,0.6); transform: translateX(100%); transition: transform .35s cubic-bezier(0.4, 0, 0.2, 1); padding: 24px; z-index: 100; }
       .drawer.open { transform: translateX(0); }
-      .drawer a { display: block; padding: 14px 16px; border-radius: 12px; color: var(--muted); margin-bottom: 8px; }
-      .drawer a:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+      .drawer-close { background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; margin-bottom: 24px; float: right; }
+      .drawer-nav { clear: both; display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+      .drawer a { display: block; padding: 14px 16px; border-radius: 12px; color: var(--muted); }
+      .drawer a:hover, .drawer a[aria-current="page"] { background: rgba(255,255,255,0.08); color: var(--text); }
+      .drawer a[aria-current="page"] { border-left: 3px solid var(--brand-2); }
     }
 
     .section { max-width: 1200px; margin: 48px auto; padding: 0 20px; }
@@ -148,17 +151,29 @@
        <nav class="menu" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="Activities.html">Activities</a>
-        <a href="UpcomingEvents.html"aria-current="page">Upcoming Events</a>
+        <a href="UpcomingEvents.html" aria-current="page">Upcoming Events</a>
         <a href="Location.html">Location</a>
         <a href="contact.html">Contact</a>
-      </nav>
       </nav>
       <button class="menu-toggle" id="menuToggle" aria-controls="mobileDrawer" aria-expanded="false">
         <i class="fa-solid fa-bars"></i> Menu
       </button>
     </div>
-
   </header>
+
+  <!-- Mobile Drawer Menu Component -->
+  <aside id="mobileDrawer" class="drawer" aria-hidden="true">
+    <button id="drawerClose" class="drawer-close" aria-label="Close Menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <nav class="drawer-nav" aria-label="Mobile">
+      <a href="index.html">Home</a>
+      <a href="Activities.html">Activities</a>
+      <a href="UpcomingEvents.html" aria-current="page">Upcoming Events</a>
+      <a href="Location.html">Location</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
 
   <main id="content" class="section">
     <div class="kicker">Live Schedule</div>
@@ -242,7 +257,7 @@
         </div>
         <div class="event-details">
           <h3>Cosmic Casuals: Fighting Game Community evening</h3>
-          <p>A community-focused on popular fighting games for weekly double elimination tournaments, best of X rounds and endless lobbies.  Bring your own Pad/Fightstick.  Rental pads and fightsticks available for a deposit. </p>
+          <p>A community-focused on popular fighting games for weekly double elimination tournaments, best of X rounds and endless lobbies. Bring your own Pad/Fightstick. Rental pads and fightsticks available for a deposit. </p>
           <div class="event-meta">
             <span><i class="fa-regular fa-clock"></i> 06:00 PM - 10:00 PM</span>
             <span><i class="fa-solid fa-people-group"></i> Lounge Area/£6 entry</span>

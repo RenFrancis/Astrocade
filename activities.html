@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Astrocade</title>
+  <title>Activities - Astrocade</title>
       
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -174,7 +174,7 @@
         position: fixed; 
         inset: 0 0 0 30%; 
         backdrop-filter: blur(var(--blur-strength)) saturate(150%); 
-        background: rgba(14, 11, 22, 0.85); 
+        background: rgba(14, 11, 22, 0.95); 
         border-left: 1px solid var(--glass-border); 
         box-shadow: -10px 0 40px rgba(0,0,0,0.6); 
         transform: translateX(100%); 
@@ -185,16 +185,35 @@
       .drawer.open { 
         transform: translateX(0); 
       }
+      .drawer-close {
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-bottom: 24px;
+        float: right;
+      }
+      .drawer-nav {
+        clear: both;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 20px;
+      }
       .drawer a { 
         display: block; 
         padding: 14px 16px; 
         border-radius: 12px; 
         color: var(--muted); 
-        margin-bottom: 8px; 
       }
-      .drawer a:hover { 
+      .drawer a:hover,
+      .drawer a[aria-current="page"] { 
         background: rgba(255,255,255,0.08); 
         color: var(--text); 
+      }
+      .drawer a[aria-current="page"] {
+        border-left: 3px solid var(--brand-2);
       }
     }
                                                                                                                                                                                                                                                                   
@@ -423,16 +442,16 @@
   <a class="sr-only" href="#content">Skip to content</a>
                                                                                                                                                                 
   <!-- Header / Navigation -->
-   <header>
+  <header>
     <div class="nav" role="navigation" aria-label="Main">
       <div class="brand">
         <div class="brand-mark" aria-hidden="true"></div>
         <div class="brand-name">Astrocade</div>
       </div>
       <nav class="menu" aria-label="Primary">
-        <a href="index.html"aria-current="page">Home</a>
-        <a href="Activities.html">Activities</a>
-        <a href="UpcomingEvents.html" >Upcoming Events</a>
+        <a href="index.html">Home</a>
+        <a href="Activities.html" aria-current="page">Activities</a>
+        <a href="UpcomingEvents.html">Upcoming Events</a>
         <a href="Location.html">Location</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -440,158 +459,77 @@
         <i class="fa-solid fa-bars"></i> Menu
       </button>
     </div>
-
   </header>
 
+  <!-- Mobile Drawer Menu Component -->
+  <aside id="mobileDrawer" class="drawer" aria-hidden="true">
+    <button id="drawerClose" class="drawer-close" aria-label="Close Menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <nav class="drawer-nav" aria-label="Mobile">
+      <a href="index.html">Home</a>
+      <a href="Activities.html" aria-current="page">Activities</a>
+      <a href="UpcomingEvents.html">Upcoming Events</a>
+      <a href="Location.html">Location</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
                                                                                                                                                                 
   <main id="content" class="section">
-    
-    <!-- Section 1: Arcade Machine Gallery -->
-    <div class="section-title-wrapper">
-      <div class="kicker">Family Entertainment Centre & Arcade</div>
-      <h2>Premium Cabinets & Fun providers</h2>
-      <p class="muted" style="margin-top:-2px; margin-bottom:0px">Explore our state-of-the-art interactive gaming setups and redemption venue.</p>
-    </div>
+    <div class="kicker">Epic Experiences</div>
+    <h2>What We Offer</h2>
+    <p class="muted" style="margin-top:-2px; margin-bottom:28px">From premium hardware setups to competitive arenas, discover our anchor attractions.</p>
                                                                                                                                                                               
     <div class="grid">
-      <!-- Machine 1 -->
-      <article class="card col">
+      <!-- Activity 1 -->
+      <article class="card col-6">
         <div class="media">
-          <img src="Players_1.jpg" alt="Classic Retro Arcade Machines Row" />
+          <img src="Placement_Image.png" alt="Next Gen Arcade Arena" />
         </div>
         <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-ghost"></i> Prizes of all kinds</div>
-          <h3>Gatcha</h3>
-          <p>High quality gatcha games for all! Gaming merch, sweets, TCG cards. You name it, you can win it! We tailor our gatcha machines to upcoming events too! Always something new!</p>
-          <a class="btn" href="UpcomingEvents.html">View Upcoming Events</a>
+          <div class="chip"><i class="fa-solid fa-gamepad"></i> Premium Arcade</div>
+          <h3>Next-Gen Arcade Cabinets</h3>
+          <p>Immerse yourself in dynamic setups featuring high refresh rate hardware, classic rhythm controllers, and modern simulator cockpits tailored for absolute immersion.</p>
+          <a class="btn primary" href="BookingsAndParty.html">Reserve Play Pass</a>
         </div>
       </article>
                                                                                                                                                                                           
-      <!-- Machine 2 -->
-      <article class="card col">
+      <!-- Activity 2 -->
+      <article class="card col-6">
         <div class="media">
-          <img src="Player_2.jpeg" alt="Motion Simulator Racing Cockpit" />
+          <img src="Placement_Image5.jpg" alt="TCG Card Game Venue Setup" />
         </div>
         <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-car"></i>Every play ensures tickets</div>
-          <h3>Redemption machines</h3>
-          <p>Link up with your squad for a team experience or tailor your visit solo. All redemption machines guarantee tickets! Exhange your tickets for a prize or save them for your next visit!</p>
-          <a class="btn primary" href="BookingsAndParty.html">Upcoming events</a>
+          <div class="chip"><i class="fa-solid fa-layer-group"></i> Tabletop & TCG</div>
+          <h3>Official TCG Arenas</h3>
+          <p>We are a verified event space for Yu-Gi-Oh!, Magic: The Gathering, Lorcana, and Pokémon. Bring your custom deck setups and scale the local brackets.</p>
+          <a class="btn" href="UpcomingEvents.html">View Deck Schedules</a>
         </div>
       </article>
                                                                                                                                                                                                 
-      <!-- Machine 3 -->
-      <article class="card col">
-        <div class="media">
-          <img src="Prizes.png" alt="Rhythm and Dance Game Platforms" />
-        </div>
-        <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-music"></i> Exclusive merch to be won</div>
-          <h3>Prize games</h3>
-          <p>Step up to the challenge with our range of prize machines! Win exclusive merch from world recognised IPs! New arrivals appear constantly!</p>
-          <a class="btn" href="UpcomingEvents.html"> View what is available</a>
-        </div>
-      </article>
-
-      <!-- Machine 4 -->
+      <!-- Activity 3 -->
       <article class="card col-6">
         <div class="media">
-          <img src="Cyberpunk.jpg" alt="Modern Stern Pinball Machines Matrix" />
+          <img src="Placement_Image6.jpg" alt="Esports streaming setups" />
         </div>
         <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-circle-dot"></i>Venue exclusive</div>
-          <h3>Exlusive video game experiences</h3>
-          <p>Immerse in a range of video game experiences only available at the venue, never released on console or P.C You may have heard of them, but you have never played them like this before!</p>
-          <a class="btn" href="UpcomingEvents.html">View what is available</a>
+          <div class="chip"><i class="fa-solid fa-trophy"></i> Competitive Brackets</div>
+          <h3>Live Local Tournaments</h3>
+          <p>Join regular community leaderboards complete with fully integrated broadcast production overlays, professional commentary loops, and premium grand prizes.</p>
+          <a class="btn" href="UpcomingEvents.html">Explore Tournaments</a>
         </div>
       </article>
-
-      <!-- Machine 5 -->
+                                                                                                                                                                                                      
+      <!-- Activity 4 -->
       <article class="card col-6">
         <div class="media">
-          <img src="Skill.jpg" alt="Lightgun Shooter Arcade Setup" />
+          <img src="Placement_Image2.webp" alt="Vibrant arcade prize counter" />
         </div>
         <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-gun"></i> Neon, lights and fun</div>
-          <h3>Skill based games</h3>
-          <p>Aim for high scores! Our range of skill based games allow you to play an infinite number of times! Experience our 4K, neon lit and immersive sound producing games! Excitement within every step!</p>
-          <a class="btn" href="Activities.html">See the challenges</a>
-        </div>
-      </article>
-    </div>
-
-    <hr class="divider" />
-
-    <!-- Section 2: Premium Services -->
-    <div class="section-title-wrapper">
-      <div class="kicker">Exclusive Services</div>
-      <h2>Events, Tournaments & Conventions</h2>
-      <p class="muted" style="margin-top:-2px; margin-bottom:0px">Get involved with popular weekly events, enter upcoming tournaments and be a part of an incredible convention experience.</p>
-    </div>
-
-    <div class="grid">
-      <!-- Service 1 -->
-      <article class="card col-6">
-        <div class="media">
-          <img src="FGC.jpg" alt="Private VIP Gaming Lounge Venue" />
-        </div>
-        <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-cake-candles"></i> Weekly community events</div>
-          <h3>Welcoming game events every week!</h3>
-          <p>Come and be a part of our ever growing community to hone your skills. Form new connections and lasting memories, hone your skills and up your game! Looking to form your own community at our venue? Contact us and lets make it happen!</p>
-          <a class="btn primary" href="BookingsAndParty.html">View weekly events</a>
-        </div>
-      </article>
-
-      <!-- Service 2 -->
-      <article class="card col-6">
-        <div class="media">
-          <img src="YCS.jpg" alt="Corporate Team Building Event Setup" />
-        </div>
-        <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-users"></i> Certified tournament venue</div>
-          <h3>Professional game and TCG tournaments</h3>
-          <p>Here at Astrocade we aim to bring you the best tournament experiences with professional tournament organisation, huge prizes and live streaming! Open to all players of any experience! Please see upcoming events for further details of upcoming tournaments.</p>
-          <a class="btn" href="UpcomingEvents.html">Upcoming tournaments</a>
-        </div>
-      </article>
-
-      <!-- Service 3 -->
-      <article class="card col">
-        <div class="media">
-          <img src="Streamer.jpg" alt="Custom Arcade Cabinet Fabrication Lab" />
-        </div>
-        <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-screwdriver-wrench"></i>Streamers and influencers</div>
-          <h3>Collaborations welcome!</h3>
-          <p>We are always on the look out to support multi media streamers and influencers. Get in touch for more details.</p>
-          <a class="btn" href="contact.html">Get in touch</a>
-        </div>
-      </article>
-
-      <!-- Service 4 -->
-      <article class="card col">
-        <div class="media">
-          <img src="Cosplayers.avif" alt="Retro Themed Arcade Food and Beverages" />
-        </div>
-        <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-utensils"></i>Anime, video games, pop-culture</div>
-          <h3>Yearly conventions</h3>
-          <p>We will announce our upcoming conventions on the upcoming events page and our social media. Let's make some memories!</p>
-          <a class="btn" href="BookingsAndParty.html">View Group Menus</a>
-        </div>
-      </article>
-
-      <!-- Service 5 -->
-      <article class="card col">
-        <div class="media">
-          <img src="{BC821564-567E-4692-9A99-3D84AA29378F}.png" alt="Arcade Circuit Board Maintenance Repair" />
-        </div>
-        <div class="card-body">
-          <div class="chip"><i class="fa-solid fa-microchip"></i> Bringing the community together</div>
-          <h3>For the players</h3>
-          <p>Our venue is professionally equipped to bring the competition right to you and the community together. Come and be a part of a welcoming team of like minded players!</p>
-          <a class="btn" href="Location.html">Come and visit us</a>
+          <div class="chip"><i class="fa-solid fa-gift"></i> Redemption Center</div>
+          <h3>High-Tier Prize Vault</h3>
+          <p>Redeem tickets won directly from skilled gameplay for authenticated rare collectibles, premium mechanical hardware gear, and limited-run event apparel prints.</p>
+          <a class="btn" href="BookingsAndParty.html">Book Event Slots</a>
         </div>
       </article>
     </div>

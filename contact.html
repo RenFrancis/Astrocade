@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Location & Hours - Astrocade</title>
+  <title>Contact Us - Astrocade</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,7 +64,7 @@
     .menu a { padding: 8px 16px; border-radius: 999px; color: var(--muted); font-weight: 500; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     .menu a:hover, .menu a[aria-current="page"] { color: var(--text); background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(5px); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 15px rgba(0, 0, 0, 0.2); outline: 1px solid rgba(255, 255, 255, 0.15); }
     .menu a[aria-current="page"] { outline: 1px solid rgba(0, 240, 255, 0.3); background: linear-gradient(180deg, rgba(0, 240, 255, 0.15), rgba(0, 240, 255, 0.02)); }
-    
+
     .menu-toggle { display: none; }
 
     @media (max-width: 840px) {
@@ -74,7 +74,7 @@
       .drawer.open { transform: translateX(0); }
       .drawer-close { background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; margin-bottom: 24px; float: right; }
       .drawer-nav { clear: both; display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
-      .drawer a { display: block; padding: 14px 16px; border-radius: 12px; color: var(--muted); margin-bottom: 0px; }
+      .drawer a { display: block; padding: 14px 16px; border-radius: 12px; color: var(--muted); }
       .drawer a:hover, .drawer a[aria-current="page"] { background: rgba(255,255,255,0.08); color: var(--text); }
       .drawer a[aria-current="page"] { border-left: 3px solid var(--brand-2); }
     }
@@ -83,8 +83,8 @@
     .section h2 { font-family: "Orbitron", sans-serif; font-weight: 800; font-size: clamp(24px, 4vw, 34px); letter-spacing: .5px; margin: 0 0 6px; }
     
     .kicker { color: var(--brand-2); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-size: .8rem; text-shadow: 0 0 10px rgba(0, 240, 255, 0.4); }
-    
-    .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 24px; }
+
+    .split-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 28px; margin-top: 24px; }
     @media (max-width: 980px) { .split-layout { grid-template-columns: 1fr; } }
 
     .glass-box {
@@ -97,22 +97,37 @@
       padding: 32px;
       position: relative;
     }
-    .glass-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 45%; background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%); pointer-events: none; }
 
-    .hours-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-    .hours-table td { padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-    .hours-table tr:last-child td { border-bottom: none; }
-    .hours-table td.day { font-weight: 600; color: #fff; }
-    .hours-table td.time { text-align: right; color: var(--muted); }
+    .form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+    
+    .form-control {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      outline: none;
+    }
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--brand-2);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+    }
+    textarea.form-control { resize: vertical; min-height: 120px; }
 
-    .map-container { width: 100%; height: 320px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; background: rgba(0,0,0,0.3); position: relative; }
-    .map-placeholder { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; color: var(--muted); text-align: center; padding: 20px; }
-    .map-placeholder i { font-size: 2.5rem; color: var(--brand-2); margin-bottom: 12px; }
+    .contact-method { display: flex; gap: 16px; margin-bottom: 24px; align-items: center; }
+    .contact-method i { font-size: 1.3rem; color: var(--brand-2); width: 24px; text-align: center; }
+    .contact-method div p { margin: 0; font-size: 0.95rem; }
+    .contact-method div span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); display: block; }
 
-    .info-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
-    .info-item i { font-size: 1.2rem; color: var(--brand-2); margin-top: 4px; }
-    .info-item h4 { margin: 0 0 4px 0; font-family: "Orbitron", sans-serif; font-size: 1rem; color: #fff; }
-    .info-item p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid rgba(255, 255, 255, 0.15); background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%); padding: 12px 22px; border-radius: 14px; color: var(--text); font-weight: 600; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2); transition: all 0.25s ease; cursor: pointer; width: 100%; }
+    .btn:hover { border-color: rgba(0, 240, 255, 0.5); background: linear-gradient(180deg, rgba(0, 240, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%); box-shadow: 0 0 15px rgba(0, 240, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+    .btn.primary { background: linear-gradient(180deg, rgba(157, 78, 221, 0.4) 0%, rgba(157, 78, 221, 0.1) 100%); border-color: rgba(157, 78, 221, 0.5); box-shadow: 0 4px 20px rgba(157, 78, 221, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+    .btn.primary:hover { background: linear-gradient(180deg, rgba(157, 78, 221, 0.5) 0%, rgba(157, 78, 221, 0.2) 100%); border-color: var(--brand-2); box-shadow: 0 0 20px rgba(0, 240, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
 
     footer { border-top: 1px solid var(--glass-border); margin-top: 60px; background: rgba(6, 4, 10, 0.4); }
     .footer-inner { max-width: 1200px; margin: 0 auto; padding: 32px 20px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; color: var(--muted); }
@@ -133,12 +148,12 @@
         <div class="brand-mark" aria-hidden="true"></div>
         <div class="brand-name">Astrocade</div>
       </div>
-     <nav class="menu" aria-label="Primary">
+       <nav class="menu" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="Activities.html">Activities</a>
         <a href="UpcomingEvents.html">Upcoming Events</a>
-        <a href="Location.html" aria-current="page">Location</a>
-        <a href="contact.html">Contact</a>
+        <a href="Location.html">Location</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
       <button class="menu-toggle" id="menuToggle" aria-controls="mobileDrawer" aria-expanded="false">
         <i class="fa-solid fa-bars"></i> Menu
@@ -155,89 +170,59 @@
       <a href="index.html">Home</a>
       <a href="Activities.html">Activities</a>
       <a href="UpcomingEvents.html">Upcoming Events</a>
-      <a href="Location.html" aria-current="page">Location</a>
-      <a href="contact.html">Contact</a>
+      <a href="Location.html">Location</a>
+      <a href="contact.html" aria-current="page">Contact</a>
     </nav>
   </aside>
 
   <main id="content" class="section">
-    <div class="kicker">Visit the community</div>
-    <h2>Location & Operating Hours</h2>
-    <p class="muted" style="margin-top:-2px; margin-bottom:28px">Find your way to our high-spec facility layout or check out our opening intervals.</p>
+    <div class="kicker">Get in Touch</div>
+    <h2>Contact Terminal</h2>
+    <p class="muted" style="margin-top:-2px; margin-bottom:28px">Contact us through one of the communications below and we will aim to get back to you.</p>
 
     <div class="split-layout">
-      <!-- Panel 1: Contact Details & Map -->
-      <div class="glass-box">
-        <div class="info-item">
-          <i class="fa-solid fa-location-dot"></i>
+      <!-- Info Column -->
+      <div class="glass-box" style="display:flex; flex-direction:column; justify-content:center;">
+        <h3 style="margin-top:0; font-family:'Orbitron', sans-serif; font-size:1.3rem;">Direct Inquiries</h3>
+        <p class="muted" style="margin-bottom: 24px; font-size: 0.95rem;">Please note that we are only able to respond to communications specifically regarding Astrocade.</p>
+        <h3>FAQ</h3>
+        <div class="contact-method">
+          <i class="fa-solid fa-envelope"></i>
           <div>
-            <h4>Astrocade - Family Entertainment Centre & Arcade</h4>
-            <p>15-19, The Mall Newlands Shopping Centre, Gold St, Kettering NN16 8JL</p>
+            <span>How do I work at Astrocade?</span>
+            <p>We will advertise on social media when positions are available. We are unable to accept CVs in person. We are also unable to offer work experience placements or offer working visas.</p>
           </div>
         </div>
 
-        <div class="info-item">
-          <i class="fa-solid fa-phone"></i>
+        <div class="contact-method">
+          <i class="fa-solid fa-envelope"></i>
           <div>
-            <h4>Call us</h4>
-            <p>+44 999 9999</p>
+            <span>I'm a business/organisation, how do I contact the director?</span>
+            <p>Email at <b>director@astrocadeltd.net</b></p>
           </div>
-        </div>
-
-        <div class="info-item">
-          <i class="fa-solid fa-square-parking"></i>
-          <div>
-            <h4>Transit & Parking</h4>
-            <p>Pay on display parking available at the Newlands Shopping Centre, alternatively bus route that stops directly in front of the shopping centre is available. If you are coming by train, stop at Corby and we are a short 2 minute drive away or 10 minute walk from the main station.</p>
-          </div>
-        </div>
-
-        <!-- Embedded Interactive Map Shell -->
-        <div class="map-container">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2434.3316763955822!2d-0.7297641221928026!3d52.40066477203021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48779f01eb9830dd%3A0x698a7a52febac7e2!2sNewlands%20Shopping%20Centre!5e0!3m2!1sen!2suk!4v1783271668511!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
       </div>
 
-      <!-- Panel 2: Operational Times -->
+      <!-- Form Column -->
       <div class="glass-box">
-        <h3 style="margin-top:0; font-family: 'Orbitron', sans-serif; font-size: 1.4rem;">Time Modules</h3>
-        <p class="muted" style="font-size: 0.95rem;">Note: Arena entry allocations close exactly 45 minutes prior to facility lockdown.</p>
-        
-        <table class="hours-table">
-          <tr>
-            <td class="day">Monday</td>
-            <td class="time">8:00 AM - 6:00 PM</td>
-          </tr>
-          <tr>
-            <td class="day">Tuesday</td>
-            <td class="time">8:00 AM - 6:00 PM</td>
-          </tr>
-          <tr>
-            <td class="day">Wednesday</td>
-            <td class="time">8:00 AM - 6:00 PM</td>
-          </tr>
-          <tr>
-            <td class="day">Thursday</td>
-            <td class="time">8:00 AM - 6:00 PM</td>
-          </tr>
-          <tr>
-            <td class="day">Friday</td>
-            <td class="time">8:00 PM - 6:00 PM</td>
-          </tr>
-          <tr>
-            <td class="day">Saturday</td>
-            <td class="time">8:00 AM - 6:00 PM</td>
-          </tr>
-          <tr>
-            <td class="day">Sunday</td>
-            <td class="time">10:00 AM - 4:00 PM</td>
-          </tr>
-        </table>
+        <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message successfully transmitted.');">
+          <div class="form-group">
+            <label for="userName">Your name</label>
+            <input type="text" id="userName" class="form-control" placeholder="e.g. Jon Doe" required />
+          </div>
 
-        <div style="margin-top: 32px; padding: 20px; border-radius: 12px; background: rgba(157, 78, 221, 0.1); border: 1px solid rgba(157, 78, 221, 0.25);">
-          <h4 style="margin: 0 0 6px 0; font-family: 'Orbitron', sans-serif; color: var(--brand-2);"><i class="fa-solid fa-circle-exclamation"></i> Holiday Rotations & Geek Retreat</h4>
-          <p style="margin: 0; font-size: 0.9rem; color: var(--muted);">Astrocade is open during the holiday season with the exception to national bank holiday, Christmas Eve, Christmas Day and Boxing Day. Please be aware that our opening times do not reflect those of Geek Retreat and vice versa.</p>
-        </div>
+          <div class="form-group">
+            <label for="userEmail">Your email</label>
+            <input type="email" id="userEmail" class="form-control" placeholder="alex@domain.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="userMsg">Message</label>
+            <textarea id="userMsg" class="form-control" placeholder="Enter the details here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn primary"><i class="fa-solid fa-paper-plane"></i> Transmit Message</button>
+        </form>
       </div>
     </div>
   </main>
@@ -247,7 +232,7 @@
     <div class="footer-inner">
       <div class="links">
         <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" style="color:var(--brand-2)">Contact</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms & Conditions</a>
       </div>
@@ -263,10 +248,19 @@
     const toggle = document.getElementById('menuToggle');
     const drawer = document.getElementById('mobileDrawer');
     const closeBtn = document.getElementById('drawerClose');
+                                                                                                                                                                         
+    function openDrawer(){ 
+      drawer.classList.add('open'); 
+      drawer.setAttribute('aria-hidden','false'); 
+      toggle.setAttribute('aria-expanded','true'); 
+    }
     
-    function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); }
-    function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); }
-    
+    function closeDrawer(){ 
+      drawer.classList.remove('open'); 
+      drawer.setAttribute('aria-hidden','true'); 
+      toggle.setAttribute('aria-expanded','false'); 
+    }
+                                                                                                                                                                                     
     toggle?.addEventListener('click', openDrawer);
     closeBtn?.addEventListener('click', closeDrawer);
     drawer?.addEventListener('click', (e)=>{ if(e.target === drawer) closeDrawer(); });
