@@ -174,7 +174,7 @@
         position: fixed; 
         inset: 0 0 0 30%; 
         backdrop-filter: blur(var(--blur-strength)) saturate(150%); 
-        background: rgba(14, 11, 22, 0.85); 
+        background: rgba(14, 11, 22, 0.95); 
         border-left: 1px solid var(--glass-border); 
         box-shadow: -10px 0 40px rgba(0,0,0,0.6); 
         transform: translateX(100%); 
@@ -185,16 +185,35 @@
       .drawer.open { 
         transform: translateX(0); 
       }
+      .drawer-close {
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-bottom: 24px;
+        float: right;
+      }
+      .drawer-nav {
+        clear: both;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 20px;
+      }
       .drawer a { 
         display: block; 
         padding: 14px 16px; 
         border-radius: 12px; 
         color: var(--muted); 
-        margin-bottom: 8px; 
       }
-      .drawer a:hover { 
+      .drawer a:hover,
+      .drawer a[aria-current="page"] { 
         background: rgba(255,255,255,0.08); 
         color: var(--text); 
+      }
+      .drawer a[aria-current="page"] {
+        border-left: 3px solid var(--brand-2);
       }
     }
                                                                                                                                                                                                                                                                   
@@ -430,9 +449,9 @@
         <div class="brand-name">Astrocade</div>
       </div>
       <nav class="menu" aria-label="Primary">
-        <a href="index.html"aria-current="page">Home</a>
+        <a href="index.html" aria-current="page">Home</a>
         <a href="Activities.html">Activities</a>
-        <a href="UpcomingEvents.html" >Upcoming Events</a>
+        <a href="UpcomingEvents.html">Upcoming Events</a>
         <a href="Location.html">Location</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -440,8 +459,21 @@
         <i class="fa-solid fa-bars"></i> Menu
       </button>
     </div>
-
   </header>
+
+  <!-- Mobile Drawer Menu Component (Added Missing HTML) -->
+  <aside id="mobileDrawer" class="drawer" aria-hidden="true">
+    <button id="drawerClose" class="drawer-close" aria-label="Close Menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <nav class="drawer-nav" aria-label="Mobile">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="Activities.html">Activities</a>
+      <a href="UpcomingEvents.html">Upcoming Events</a>
+      <a href="Location.html">Location</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
 
                                                                                                                                                                 
   <main id="content" class="section">
